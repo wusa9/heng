@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>539精準報牌 | 每日必中情報</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E6A800;
+    --gold-light: #FFD84D;
+    --gold-dark: #B87800;
+    --red: #E8001D;
+    --red-dark: #C0001A;
+    --red-light: #FF3347;
+    --bg: #FFF8F0;
+    --bg2: #FFF2E5;
+    --bg3: #FFEEDD;
+    --card: #FFFFFF;
+    --dark: #1A0A00;
+    --text: #2D1200;
+    --text2: #6B3A1F;
+    --white: #FFFFFF;
+    --gray: #9A7060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #FFEFCC 0%, #FFD6D6 50%, #FFE8B0 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 20%, rgba(255,80,0,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,200,0,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(230,168,0,0.04) 60px,
+      rgba(230,168,0,0.04) 61px
+    );
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    animation: pulse-badge 2s ease-in-out infinite;
+    box-shadow: 0 4px 16px rgba(232,0,29,0.35);
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .hero-img-wrap {
+    width: min(360px, 92vw);
+    margin-bottom: 4px;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    filter: drop-shadow(0 12px 32px rgba(160,100,0,0.22));
+  }
+
+  .hero-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 900;
+    color: var(--text);
+    margin-top: 8px;
+    letter-spacing: 6px;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .hero-desc {
+    margin-top: 20px;
+    font-size: clamp(14px, 3vw, 17px);
+    color: var(--text2);
+    line-height: 1.8;
+    max-width: 360px;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NUMBERS DISPLAY */
+  .numbers-box {
+    margin: 32px 0;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .ball {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--red) 0%, #FF5500 60%, var(--red-dark) 100%);
+    box-shadow: 0 6px 20px rgba(232,0,29,0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+    position: relative;
+  }
+
+  .ball.question {
+    background: var(--white);
+    color: var(--gold);
+    border: 2px solid var(--gold-light);
+    font-size: 28px;
+    animation: glow-ball 1.5s ease-in-out infinite;
+    box-shadow: 0 6px 20px rgba(230,168,0,0.3);
+  }
+
+  @keyframes glow-ball {
+    0%, 100% { box-shadow: 0 6px 20px rgba(230,168,0,0.3); }
+    50% { box-shadow: 0 8px 32px rgba(230,168,0,0.6); }
+  }
+
+  .ball-label {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  .ball-wrap { display: flex; flex-direction: column; align-items: center; }
+
+  .ball.blurred {
+    filter: blur(5px);
+    user-select: none;
+  }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin: 10px 0 32px;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 340px;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(200,80,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 14px 10px;
+    text-align: center;
+    background: transparent;
+    border-right: 1px solid rgba(255,255,255,0.6);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .stat-text {
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* CTA */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #06C755 0%, #04A847 100%);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(6,199,85,0.45);
+    animation: fadeUp 0.8s 0.7s ease forwards, pulse-cta 2.5s 1.5s ease-in-out infinite;
+    opacity: 0;
+    transform: translateY(30px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn .line-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: rgba(255,255,255,0.15);
+    transform: skewX(-20deg);
+    animation: shine 3s 2s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0% { left: -60%; }
+    100% { left: 160%; }
+  }
+
+  @keyframes pulse-cta {
+    0%, 100% { box-shadow: 0 8px 30px rgba(6,199,85,0.45); }
+    50% { box-shadow: 0 12px 45px rgba(6,199,85,0.7); }
+  }
+
+  .cta-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text2);
+    letter-spacing: 1px;
+    animation: fadeUp 0.8s 0.9s ease forwards;
+    opacity: 0;
+  }
+
+  /* FEATURES - irregular bento layout */
+  .features {
+    background: var(--bg2);
+    padding: 48px 18px 52px;
+    border-top: 1px solid rgba(230,168,0,0.2);
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 900;
+    margin-bottom: 28px;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  /* Bento grid */
+  .features-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px 18px;
+    box-shadow: 0 2px 14px rgba(200,100,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(232,0,29,0.13);
+  }
+
+  /* card 1 — wide, spans 2 cols */
+  .feature-card.wide {
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(120deg, #FFF0F0 0%, #FFF8EE 100%);
+    border: 1.5px solid rgba(232,0,29,0.12);
+  }
+
+  /* card 2 — taller left */
+  .feature-card.tall {
+    background: linear-gradient(160deg, #FFF5E0 0%, #FFFBF5 100%);
+    border: 1.5px solid rgba(230,168,0,0.18);
+  }
+
+  /* card 3 — normal right */
+  .feature-card.normal {
+    background: linear-gradient(160deg, #FFF0F5 0%, #FFF8F0 100%);
+    border: 1.5px solid rgba(232,0,29,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .feature-card.wide .feature-icon { font-size: 40px; flex-shrink: 0; margin: 0; }
+  .feature-card.wide .f-content { text-align: left; }
+  .feature-card:not(.wide) { text-align: left; }
+
+  .feature-icon { font-size: 32px; margin-bottom: 10px; display: block; line-height: 1; }
+
+  .feature-title {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+
+  .feature-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  /* accent pill on cards */
+  .f-pill {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .f-pill.gold { background: var(--gold); }
+
+  /* TESTIMONIALS — bubble layout */
+  .testimonials {
+    padding: 48px 18px 60px;
+    background: var(--bg3);
+    border-top: 1px solid rgba(230,168,0,0.2);
+    overflow: hidden;
+  }
+
+  .bubbles-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bubble {
+    position: relative;
+    background: var(--card);
+    border-radius: 18px;
+    padding: 14px 16px 12px;
+    box-shadow: 0 3px 16px rgba(200,80,0,0.1);
+    max-width: 82%;
+    margin-bottom: 20px;
+  }
+
+  /* alternating left / right */
+  .bubble:nth-child(odd)  { align-self: flex-start; margin-left: 0;   border-bottom-left-radius: 4px; }
+  .bubble:nth-child(even) { align-self: flex-end;   margin-right: 0;  border-bottom-right-radius: 4px; }
+
+  /* slight rotation for liveliness */
+  .bubble:nth-child(1) { transform: rotate(-1deg); }
+  .bubble:nth-child(2) { transform: rotate(0.8deg); margin-top: -6px; }
+  .bubble:nth-child(3) { transform: rotate(-0.5deg); margin-top: -4px; }
+
+  /* tail left */
+  .bubble:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: 18px;
+    width: 0; height: 0;
+    border-left: 10px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 12px solid var(--card);
+    filter: drop-shadow(0 3px 3px rgba(200,80,0,0.07));
+  }
+
+  /* tail right */
+  .bubble:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; right: 18px;
+    width: 0; height: 0;
+    border-left: 0px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid var(--card);
+    filter: drop-shadow(0 3px 3px rgba(200,80,0,0.07));
+  }
+
+  .bubble-stars {
+    color: #FFB300;
+    font-size: 12px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+
+  .bubble-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  .bubble-author {
+    font-size: 11px;
+    color: var(--red);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* avatar dot */
+  .bubble-avatar {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red) 0%, #FF7700 100%);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(160deg, #FFE8C0 0%, #FFCCD0 100%);
+    border-top: 1px solid rgba(230,168,0,0.2);
+  }
+
+  .bottom-cta h2 {
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  .bottom-cta p {
+    color: var(--text2);
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: #F5EDE5;
+    padding: 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #AA8870;
+    line-height: 1.7;
+    border-top: 1px solid rgba(200,150,100,0.2);
+  }
+
+  /* FLOATING TICKER */
+  .ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--red);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 100;
+    border-top: 3px solid var(--gold-light);
+    box-shadow: 0 -4px 20px rgba(232,0,29,0.3);
+  }
+
+  .ticker-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+
+  .ticker-btn {
+    background: var(--gold-light);
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 900;
+    padding: 8px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .ball { width: 48px; height: 48px; font-size: 22px; }
+    .numbers-box { gap: 8px; }
+    .stats { max-width: 300px; }
+    .ticker-text { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">📢 每日更新 · 限時公開</div>
+
+  <div class="hero-img-wrap">
+    <svg viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg" class="hero-svg" role="img" aria-label="539">
+      <defs>
+        <!-- Ball 5: deep gold -->
+        <radialGradient id="g5" cx="40%" cy="30%" r="65%">
+          <stop offset="0%"   stop-color="#FFE566"/>
+          <stop offset="45%"  stop-color="#F5B800"/>
+          <stop offset="100%" stop-color="#B87800"/>
+        </radialGradient>
+        <!-- Ball 3: bright amber -->
+        <radialGradient id="g3" cx="40%" cy="30%" r="65%">
+          <stop offset="0%"   stop-color="#FFD84D"/>
+          <stop offset="45%"  stop-color="#FFA500"/>
+          <stop offset="100%" stop-color="#C86400"/>
+        </radialGradient>
+        <!-- Ball 9: warm golden yellow -->
+        <radialGradient id="g9" cx="40%" cy="30%" r="65%">
+          <stop offset="0%"   stop-color="#FFF0A0"/>
+          <stop offset="45%"  stop-color="#E6A800"/>
+          <stop offset="100%" stop-color="#9E6600"/>
+        </radialGradient>
+        <!-- Gloss highlight (top-left shine) -->
+        <radialGradient id="gloss" cx="38%" cy="25%" r="45%">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.62)"/>
+          <stop offset="60%"  stop-color="rgba(255,255,255,0.10)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </radialGradient>
+        <!-- Bottom rim glow -->
+        <radialGradient id="rim" cx="50%" cy="95%" r="50%">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.18)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </radialGradient>
+        <filter id="ds" x="-25%" y="-20%" width="150%" height="150%">
+          <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="rgba(160,100,0,0.38)"/>
+        </filter>
+        <filter id="ds3" x="-25%" y="-20%" width="150%" height="150%">
+          <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="rgba(180,110,0,0.35)"/>
+        </filter>
+      </defs>
+
+      <!-- decorative dots -->
+      <circle cx="22"  cy="28"  r="5"   fill="rgba(200,130,0,0.2)"/>
+      <circle cx="338" cy="32"  r="7"   fill="rgba(200,130,0,0.15)"/>
+      <circle cx="16"  cy="130" r="4"   fill="rgba(230,168,0,0.2)"/>
+      <circle cx="344" cy="128" r="5"   fill="rgba(200,130,0,0.15)"/>
+
+      <!-- star sparkles (gold) -->
+      <!-- top-right of ball 3 -->
+      <g transform="translate(188,18) scale(0.85)" fill="#FFB800">
+        <polygon points="0,-7 1.6,-2.2 6.6,-2.2 2.7,0.8 4.1,5.8 0,2.8 -4.1,5.8 -2.7,0.8 -6.6,-2.2 -1.6,-2.2"/>
+      </g>
+      <!-- bottom-left of ball 5 -->
+      <g transform="translate(62,128) scale(0.6)" fill="#FFB800">
+        <polygon points="0,-7 1.6,-2.2 6.6,-2.2 2.7,0.8 4.1,5.8 0,2.8 -4.1,5.8 -2.7,0.8 -6.6,-2.2 -1.6,-2.2"/>
+      </g>
+
+      <!-- BALL 5 (left, slightly lower) -->
+      <g filter="url(#ds)" transform="translate(10,12)">
+        <circle cx="68" cy="70" r="66" fill="url(#g5)"/>
+        <circle cx="68" cy="70" r="66" fill="url(#gloss)"/>
+        <circle cx="68" cy="70" r="66" fill="url(#rim)"/>
+        <text x="68" y="96" text-anchor="middle"
+              font-family="'Bebas Neue', Arial Black, sans-serif"
+              font-size="88" font-weight="900"
+              fill="#5A2D00" opacity="0.92"
+              style="text-shadow: 0 2px 6px rgba(0,0,0,0.15)">5</text>
+      </g>
+
+      <!-- BALL 3 (center, slightly raised) -->
+      <g filter="url(#ds3)" transform="translate(112,4)">
+        <circle cx="68" cy="70" r="68" fill="url(#g3)"/>
+        <circle cx="68" cy="70" r="68" fill="url(#gloss)"/>
+        <circle cx="68" cy="70" r="68" fill="url(#rim)"/>
+        <text x="68" y="97" text-anchor="middle"
+              font-family="'Bebas Neue', Arial Black, sans-serif"
+              font-size="90" font-weight="900"
+              fill="#5A2D00" opacity="0.92">3</text>
+      </g>
+
+      <!-- BALL 9 (right, slightly lower) -->
+      <g filter="url(#ds)" transform="translate(216,12)">
+        <circle cx="68" cy="70" r="66" fill="url(#g9)"/>
+        <circle cx="68" cy="70" r="66" fill="url(#gloss)"/>
+        <circle cx="68" cy="70" r="66" fill="url(#rim)"/>
+        <text x="68" y="96" text-anchor="middle"
+              font-family="'Bebas Neue', Arial Black, sans-serif"
+              font-size="88" font-weight="900"
+              fill="#5A2D00" opacity="0.92">9</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-sub">精準報牌情報站</div>
+  <div class="hero-desc">整合數據分析 × 長期追蹤走勢</div>
+
+
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">87%</div>
+      <div class="stat-text">準中率</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5K+</div>
+      <div class="stat-text">會員人數</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3年</div>
+      <div class="stat-text">持續追蹤</div>
+    </div>
+  </div>
+
+  <a href="#join" class="cta-btn">
+    <svg class="line-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+    立即領取今日牌
+  </a>
+  <div class="cta-note">✓ 免費領取 &nbsp;·&nbsp; ✓ 每日更新 &nbsp;·&nbsp; ✓ 隨時取消</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-label">為什麼選擇我們</div>
+  <div class="section-title">三大核心優勢</div>
+  <div class="features-bento">
+
+    <!-- Wide card top -->
+    <div class="feature-card wide">
+      <span class="feature-icon">📊</span>
+      <div class="f-content">
+        <div class="f-pill">數據驅動</div>
+        <div class="feature-title">歷史走勢分析</div>
+        <div class="feature-desc">整合歷年開獎紀錄，冷熱號即時掌握</div>
+      </div>
+    </div>
+
+    <!-- Tall left -->
+    <div class="feature-card tall">
+      <span class="feature-icon">⚡</span>
+      <div class="f-pill gold">即時</div>
+      <div class="feature-title">每日準時推送</div>
+      <div class="feature-desc">開獎前第一時間更新，不錯過每一期</div>
+    </div>
+
+    <!-- Normal right -->
+    <div class="feature-card normal">
+      <span class="feature-icon">🎯</span>
+      <div class="f-pill">精選</div>
+      <div class="feature-title">精準篩選號碼</div>
+      <div class="feature-desc">縮小範圍，提升每注參考價值</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-title">真實回饋</div>
+  <div class="bubbles-wrap">
+
+    <div class="bubble">
+      <div class="bubble-stars">★★★★★</div>
+      <div class="bubble-text">跟了三個月，整體命中率比以前自己選好很多，值得參考！</div>
+      <div class="bubble-author"><span class="bubble-avatar">志</span>台中 阿志</div>
+    </div>
+
+    <div class="bubble">
+      <div class="bubble-stars">★★★★★</div>
+      <div class="bubble-text">每天早上等報牌已經變成習慣，分析方式很有邏輯，推！</div>
+      <div class="bubble-author"><span class="bubble-avatar">芬</span>高雄 小芬</div>
+    </div>
+
+    <div class="bubble">
+      <div class="bubble-stars">★★★★☆</div>
+      <div class="bubble-text">推薦給朋友，大家都說比亂選好，準中率真的有差！</div>
+      <div class="bubble-author"><span class="bubble-avatar">明</span>新北 建明</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta" id="join">
+  <h2>今天就訂閱，立即看牌 🎯</h2>
+  <p>名額有限，先到先得</p>
+  <a href="#" class="cta-btn" style="animation: none; opacity: 1; transform: none;">
+    <svg class="line-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+    免費領取今日報牌
+  </a>
+  <br>
+  <div class="cta-note" style="margin-top: 16px; animation: none; opacity: 1;">👆 點擊後即可查看今日號碼情報</div>
+</section>
+
+
+
+<!-- FLOATING BAR -->
+<div class="ticker">
+  <div class="ticker-text">🔴 今日報牌已更新</div>
+  <a href="#join" class="ticker-btn">👆 免費領取</a>
+</div>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href="#join"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('join').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Intersection Observer for cards
+  const cards = document.querySelectorAll('.feature-card, .testi-card');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(20px)';
+    c.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s';
+    obs.observe(c);
+  });
+</script>
+
+</body>
+</html>
